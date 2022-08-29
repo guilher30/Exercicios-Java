@@ -1,7 +1,7 @@
 /**-------------------------------------------------*
- *       SENAC - TADS - Algoritimo e                *
- *       		 Programação                *                
- *         Exercicio Quadrado Magico	            *
+ *       SENAC - TADS - Algoritimo e 	            *
+ *               Programação                        *                
+ *         Exercicio Quadrado Magico		    *
  *                      			    *
  *--------------------------------------------------*/
 import javax.swing.JOptionPane;
@@ -26,7 +26,7 @@ public class ado1 {
 	}
 
 	public static boolean verQuaMag(int[][] matriz) {
-
+		//somar diagonal principal
 		int diagPrin = 0;
 		for (int i = 0; i < matriz.length; i++) {
 			for (int j = 0; j < matriz[i].length; j++) {
@@ -35,14 +35,16 @@ public class ado1 {
 				}
 			}
 		}
-
+		//somar diagonal secundaria
 		int diagSec = 0;
 		int aux = 0;
 		for (int j = matriz[aux].length - 1; j >= 0; j--) {
 			diagSec += matriz[aux][j];
 			aux++;
 		}
+		//verificando se as diagonais são iguais
 		if (diagPrin == diagSec) {
+			//somar linhas
 			for (int i = 0; i < matriz.length; i++) {
 				int soma = 0;
 				for (int j = 0; j < matriz[i].length; j++) {
@@ -53,6 +55,7 @@ public class ado1 {
 
 				}
 			}
+			//somar colunas
 			for (int j = 0; j < matriz.length; j++) {
 				int soma = 0;
 				for (int i = 0; i < matriz.length; i++) {
