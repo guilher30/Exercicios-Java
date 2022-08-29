@@ -1,6 +1,12 @@
+/**-------------------------------------------------*
+ *       SENAC - TADS - Algoritimo e                *
+ *       		 Programação                *                
+ *         Exercicio Quadrado Magico	            *
+ *                      			    *
+ *--------------------------------------------------*/
 import javax.swing.JOptionPane;
 
-public class main {
+public class ado1 {
 
 	public static void main(String[] args) {
 		int ordem = Integer.parseInt(JOptionPane.showInputDialog("Digite a ordem da matriz"));
@@ -63,4 +69,3 @@ public class main {
 
 	}
 }
-
