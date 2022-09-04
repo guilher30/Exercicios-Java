@@ -1,0 +1,120 @@
+ *       SENAC - TADS - Alg e Prog 2                *                
+ *                Ordena��o e Busca                 *
+ *                    em vetores                    *
+ *--------------------------------------------------*/
+
+import javax.swing.JOptionPane;
+
+public class ado2 {
+
+	public static void main(String[] args) {
+		int tamanho = Integer.parseInt(JOptionPane.showInputDialog("Digite o tamanho do vetor"));
+		int vet[] = new int[tamanho];
+		for (int i = 0; i < vet.length; i++) {
+			vet[i] = (int) (Math.random() * 100);
+		}
+		System.out.print("Vetor antes de ser ordenado: ");
+		imprimirVetor(vet);
+
+		ordenarVetor(vet);
+		System.out.print("Vetor Ordenado em Ordem Crescente: ");
+		imprimirVetor(vet);
+
+		int proc = Integer.parseInt(JOptionPane.showInputDialog("Digite o numero que deseja buscar: "));
+		buscarNumero(vet, proc);
+
+		ordenarParImpar(vet);
+		System.out.print("Pares e impares separados: ");
+		imprimirVetor(vet);
+		//pares ja ir�o sair em ordem crescente, pois o vetor ja havia sido ordenado em ordem crescente
+		
+		int indice = encontrarIndice(vet);
+		ordenarPar(vet, indice);
+
+		ordenarImpar(vet, indice);
+		System.out.print("Vetor com pares e impares separados e ordenados em ordem crescente ");
+		imprimirVetor(vet);
+	}
+
+	private static void imprimirVetor(int[] vet) {
+		for (int elementos : vet) {
+			System.out.print(elementos + " ");
+		}
+		System.out.println();
+	}
+
+	private static void ordenarImpar(int[] vet, int indice) {
+		int aux;
+		for (int i = indice; i < vet.length; i++) {
+			for (int j = indice; j < vet.length - 1; j++) {
+				if (vet[i] < vet[j]) {
+					aux = vet[j];
+					vet[j] = vet[i];
+					vet[i] = aux;
+				}
+			}
+		}
+	}
+
+	private static void ordenarPar(int[] vet, int indice) {
+		int aux;
+		for (int i = 0; i < indice; i++) {
+			for (int j = i + 1; j < indice; j++) {
+				if (vet[i] > vet[j]) {
+					aux = vet[j];
+					vet[j] = vet[i];
+					vet[i] = aux;
+				}
+			}
+		}
+	}
+
+	private static void buscarNumero(int[] vet, int proc) {
+		//utilizei busca linear e metodo void pra no caso de haver o numero procurado 2 ou mais vezes
+		int aux = -1;
+		for (int i = 0; i < vet.length; i++) {
+			if (vet[i] == proc) {
+				System.out.println("Numero encontrado no indice " + i);
+				aux++;
+			}
+		}
+		if (aux == -1) {
+			System.out.println("Numero não encontrado");
+		}
+	}
+
+	private static void ordenarVetor(int[] vet) {
+		int aux;
+		for (int i = 0; i < vet.length; i++) {
+			for (int j = i + 1; j < vet.length; j++) {
+				if (vet[i] > vet[j]) {
+					aux = vet[j];
+					vet[j] = vet[i];
+					vet[i] = aux;
+				}
+			}
+		}
+	}
+
+	private static int encontrarIndice(int[] vet) {
+		for (int i = 0; i < vet.length; i++) {
+			if (vet[i] % 2 != 0) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	private static void ordenarParImpar(int[] vet) {
+		int aux;
+		for (int i = 0; i < vet.length; i++) {
+			for (int j = i + 1; j < vet.length; j++) {
+				if (vet[i] % 2 != 0) {
+					aux = vet[j];
+					vet[j] = vet[i];
+					vet[i] = aux;
+				}
+			}
+		}
+	}
+}
