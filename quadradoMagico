@@ -1,0 +1,74 @@
+/**-------------------------------------------------*
+ *       SENAC - TADS - Algoritimo e 	            *
+ *               Programação                        *                
+ *         Exercicio Quadrado Magico		    *
+ *                      			    *
+ *--------------------------------------------------*/
+import javax.swing.JOptionPane;
+
+public class ado1 {
+
+	public static void main(String[] args) {
+		int ordem = Integer.parseInt(JOptionPane.showInputDialog("Digite a ordem da matriz"));
+		int matriz[][] = new int[ordem][ordem];
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				matriz[i][j] = Integer.parseInt(JOptionPane.showInputDialog("Digite um numero"));
+			}
+		}
+		boolean resp = verQuaMag(matriz);
+		if (resp == true) {
+			System.out.println("A matriz é um quadrado magico");
+		} else {
+			System.out.println("A matriz não é um quadrado magico");
+		}
+
+	}
+
+	public static boolean verQuaMag(int[][] matriz) {
+		//somar diagonal principal
+		int diagPrin = 0;
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < matriz[i].length; j++) {
+				if (matriz[i] == matriz[j]) {
+					diagPrin += matriz[i][j];
+				}
+			}
+		}
+		//somar diagonal secundaria
+		int diagSec = 0;
+		int aux = 0;
+		for (int j = matriz[aux].length - 1; j >= 0; j--) {
+			diagSec += matriz[aux][j];
+			aux++;
+		}
+		//verificando se as diagonais são iguais
+		if (diagPrin == diagSec) {
+			//somar linhas
+			for (int i = 0; i < matriz.length; i++) {
+				int soma = 0;
+				for (int j = 0; j < matriz[i].length; j++) {
+					soma += matriz[i][j];
+				}
+				if (diagPrin != soma) {
+					return false;
+
+				}
+			}
+			//somar colunas
+			for (int j = 0; j < matriz.length; j++) {
+				int soma = 0;
+				for (int i = 0; i < matriz.length; i++) {
+					soma += matriz[i][j];
+				}
+				if (diagPrin != soma) {
+					return false;
+				}
+			}
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}
